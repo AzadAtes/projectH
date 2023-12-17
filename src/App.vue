@@ -1,7 +1,40 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NavBar from "./components/NavBar.vue";
+</script>
 
 <template>
-  <RouterView />
+  <div>
+    <div>
+      <NavBar class="navBarWrapper" />
+    </div>
+    <div class="routerViewWrapper">
+      <RouterView />
+    </div>
+  </div>
 </template>
 
-<style scoped></style>
+<style>
+.navBarWrapper {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+
+  background-color: #242424;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px;
+
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.routerViewWrapper {
+  margin: 60px auto 0 auto;
+  padding: 10px;
+  text-align: center;
+
+  max-width: 1280px;
+  min-width: 292px;
+  min-height: 100vh;
+}
+</style>
