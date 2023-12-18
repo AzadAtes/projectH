@@ -4,8 +4,8 @@ import NavBar from "./components/NavBar.vue";
 
 <template>
   <div>
-    <div>
-      <NavBar class="navBarWrapper" />
+    <div class="navBarWrapper">
+      <NavBar />
     </div>
     <div class="routerViewWrapper">
       <RouterView />
@@ -25,16 +25,16 @@ import NavBar from "./components/NavBar.vue";
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px;
 
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
 }
 
 .routerViewWrapper {
-  margin: 60px auto 0 auto;
+  margin: 60px auto auto auto;
   padding: 10px;
   text-align: center;
 
   max-width: 1280px;
-  min-width: 292px;
+  min-width: 292px; /* 320px */
   min-height: 100vh;
 }
 </style>
