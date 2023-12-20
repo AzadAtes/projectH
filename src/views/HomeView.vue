@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import LoremIpsum from "../LoremIpsum.vue";
+import TaskList from "../components/TaskList.vue";
 </script>
 
 <template>
-  <h1>Home</h1>
-  <LoremIpsum />
+<TaskList/>
 </template>
 
 <style scoped></style>
