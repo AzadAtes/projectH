@@ -1,7 +1,9 @@
-:root, html, body {
-  --navBar-height: 60px;
+:root {
+  --nav-bar-height: 60px;
   --task-gap-small: 10px;
   --task-gap-large: 15px;
+  --max-width: 1200px;
+  --min-width: 300px;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,6 +18,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+body{
   margin: 0;
 }
 

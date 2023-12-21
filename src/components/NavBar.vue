@@ -11,20 +11,18 @@
 </template>
 
 <style scoped>
-nav{
-  height: 100%;
-  background-color: #242424;
-  box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px;
-  display: flex;
-  align-items: center;
-}
-ul {
-  list-style-type: none;
-  margin-block: 0;
-  padding-inline: 0;
-  margin-inline: 1rem 0;
-  display: flex;
-  justify-content: flex-start;
-  gap: 2rem;
-}
+  nav{
+    flex: 1;
+    display: flex;
+  }
+  ul {
+    flex: 1;
+    list-style-type: none;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
 </style>
