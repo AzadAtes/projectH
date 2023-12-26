@@ -8,6 +8,7 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 const screenWidth = ref(window.innerWidth);
 const input = ref<HTMLInputElement | null>(null);
 const showInput = ref(false);
+const inputIsFocused = ref(false);
 
 const toggleInput = () => {
   showInput.value = !showInput.value;
@@ -19,6 +20,15 @@ const focusInput = () => {
   nextTick(() => {
     input.value?.focus();
   });
+};
+
+const handleInputFocus = () => {
+  inputIsFocused.value = true;
+};
+
+const handleInputBlur = () => {
+  showInput.value = false;
+  inputIsFocused.value = false;
 };
 
 const toggleInputAndFocus = () => {
@@ -39,44 +49,50 @@ onBeforeUnmount(() => {
 
 <template>
   <div id="top-panel">
-    <div id="top-panel-left-section" v-if="!showInput">
-      <MenuIcon style="width: 2rem; height: 2rem" />
+    <div
+      id="top-panel-left-section"
+      v-if="screenWidth >= 600 || (!showInput && !inputIsFocused)"
+    >
+      <MenuIcon class="icon" />
       <p>Today</p>
     </div>
     <div id="top-panel-middle-section">
-      <!-- search-bar only visible on larger screens -->
       <ArrowBackIcon
         id="arrow-back-icon"
-        v-if="showInput"
+        class="icon"
+        v-if="showInput && screenWidth < 600"
         @click="toggleInput"
-        style="width: 2rem; height: 2rem; margin-right: 2px"
       />
-      <div v-if="screenWidth >= 600 || showInput" id="search-bar">
+      <!-- search-bar only visible on larger screens -->
+      <div
+        id="search-bar"
+        v-if="screenWidth >= 600 || showInput || inputIsFocused"
+      >
         <input
           id="search-bar-input"
           ref="input"
-          v-on:blur="
-            () => {
-              showInput = false;
-            }
-          "
+          @focus="handleInputFocus"
+          v-on:blur="handleInputBlur"
         />
         <div id="search-bar-icon-wrapper">
-          <SearchIcon style="width: 26px; height: 26px; color: #242424" />
+          <SearchIcon class="icon" style="color: #242424" />
         </div>
       </div>
     </div>
-    <div id="top-panel-right-section" v-if="!showInput">
+    <div
+      id="top-panel-right-section"
+      v-if="screenWidth >= 600 || (!showInput && !inputIsFocused)"
+    >
       <!-- search-icon only visible on smaller screens -->
       <div
         id="search-icon-wrapper"
         v-if="screenWidth < 600"
         @click="toggleInputAndFocus"
       >
-        <SearchIcon style="width: 30px; height: 30px; color: #242424" />
+        <SearchIcon class="icon" style="color: #242424" />
       </div>
       <div id="settings-icon-wrapper">
-        <SettingsIcon style="width: 34px; height: 34px; color: #242424" />
+        <SettingsIcon class="icon" style="color: #242424" />
       </div>
     </div>
   </div>
@@ -89,13 +105,17 @@ onBeforeUnmount(() => {
 p {
   margin: 0;
   position: relative;
-  bottom: 1px;
+  bottom: 2px;
   font-size: 24px;
 }
 input {
   outline: none;
   margin-left: 12px;
   font-size: 18px;
+}
+.icon {
+  width: 2rem;
+  height: 2rem;
 }
 #top-panel {
   flex: 1;
