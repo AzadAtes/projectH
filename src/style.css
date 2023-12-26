@@ -1,7 +1,5 @@
 :root {
-  --nav-bar-height: 60px;
-  --task-gap-small: 10px;
-  --task-gap-large: 15px;
+  --top-panel-height: 60px;
   --content-max-width: 1200px;
   --content-min-width: 300px;
 

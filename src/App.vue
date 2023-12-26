@@ -20,7 +20,7 @@ import TopPanel from "./components/TopPanel.vue";
   position: fixed;
   top: 0;
   left: 0;
-  height: var(--nav-bar-height);
+  height: var(--top-panel-height);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -29,8 +29,8 @@ import TopPanel from "./components/TopPanel.vue";
   box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px;
 }
 #content-wrapper {
-  margin-top: var(--nav-bar-height);
-  height: calc(100vh - var(--nav-bar-height));
+  margin-top: var(--top-panel-height);
+  height: calc(100vh - var(--top-panel-height));
   width: 100%;
   display: flex;
   justify-content: center;
