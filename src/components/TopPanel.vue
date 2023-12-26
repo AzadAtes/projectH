@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
       <ArrowBackIcon
         id="arrow-back-icon"
         class="icon"
-        v-if="showInput && screenWidth < 600"
+        v-if="screenWidth < 600 && (showInput || inputIsFocused)"
         @click="toggleInput"
       />
       <!-- search-bar only visible on larger screens -->
