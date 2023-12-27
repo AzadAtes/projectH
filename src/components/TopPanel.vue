@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
           @focus="handleInputFocus"
           v-on:blur="handleInputBlur"
         />
-        <div id="search-bar-icon-wrapper">
+        <div id="search-bar-icon-wrapper" class="iconWrapper">
           <SearchIcon class="icon" style="color: #242424" />
         </div>
       </div>
@@ -86,12 +86,13 @@ onBeforeUnmount(() => {
       <!-- search-icon only visible on smaller screens -->
       <div
         id="search-icon-wrapper"
+        class="iconWrapper"
         v-if="screenWidth < 600"
         @click="toggleInputAndFocus"
       >
         <SearchIcon class="icon" style="color: #242424" />
       </div>
-      <div id="settings-icon-wrapper">
+      <div id="settings-icon-wrapper" class="iconWrapper">
         <SettingsIcon class="icon" style="color: #242424" />
       </div>
     </div>
@@ -100,13 +101,13 @@ onBeforeUnmount(() => {
 
 <style scoped>
 * {
-  color: rgba(255, 255, 255, 0.7);
+  color: #bdbdbd;
 }
 p {
   margin: 0;
   position: relative;
-  bottom: 2px;
-  font-size: 24px;
+  bottom: 1px;
+  font-size: 22px;
 }
 input {
   outline: none;
@@ -116,6 +117,11 @@ input {
 .icon {
   width: 2rem;
   height: 2rem;
+}
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #top-panel {
   flex: 1;
@@ -145,11 +151,13 @@ input {
   gap: 1rem;
 }
 #search-bar {
+  height: 2rem;
+  width: 2rem;
   flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border: rgba(255, 255, 255, 0.5) solid 2px;
+  align-items: center;
+  border: #929292 solid 2px;
   border-radius: 25px;
 }
 #search-bar-input {
@@ -159,10 +167,8 @@ input {
   background-color: #242424;
 }
 #search-bar-icon-wrapper {
-  display: flex;
-  justify-content: center;
   width: 3rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #929292;
   border-radius: 0 25px 25px 0;
 }
 #search-icon-wrapper {
@@ -170,19 +176,13 @@ input {
   width: 3rem;
   padding: 3px;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #929292;
 }
 #settings-icon-wrapper {
   height: 2rem;
   width: 2rem;
   padding: 3px;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #929292;
 }
 </style>
