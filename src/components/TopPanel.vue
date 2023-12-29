@@ -3,11 +3,20 @@ import MenuIcon from "./icons/MenuIcon.vue";
 import SearchIcon from "./icons/SearchIcon.vue";
 import SettingsIcon from "./icons/SettingIcon.vue";
 import ArrowBackIcon from "./icons/ArrowBack.vue";
-import { ref, onMounted, onBeforeUnmount, nextTick, watch } from "vue";
+import CloseIcon from "./icons/close.vue";
+import {
+	ref,
+	onMounted,
+	onBeforeUnmount,
+	nextTick,
+	watch,
+	computed,
+} from "vue";
 
 const OVERLAY_THRESHOLD = 600;
 const screenWidth = ref(window.innerWidth);
-const searchBar = ref<HTMLInputElement | null>(null);
+const searchBarInput = ref<HTMLInputElement | null>(null);
+const searchBarInputText = ref("");
 const searchBarIsFocused = ref(false);
 const searchBarOverlayIsActive = ref(false);
 
@@ -17,6 +26,9 @@ const handleSearchBarFocus = () => {
 
 const handleSearchBarBlur = () => {
 	searchBarIsFocused.value = false;
+	if (searchBarInputText.value === "") {
+		searchBarOverlayIsActive.value = false;
+	}
 };
 
 const activateSearchBarOverlay = () => {
@@ -30,13 +42,25 @@ const deactivateSearchBarOverlay = () => {
 const activateSearchBarOverlayAndFocus = () => {
 	activateSearchBarOverlay();
 	nextTick(() => {
-		searchBar.value?.focus();
+		searchBarInput.value?.focus();
 	});
 };
 
-watch([screenWidth, searchBarIsFocused], () => {
+const clearSearchBarInputAndFocus = () => {
+	searchBarInputText.value = "";
+	nextTick(() => {
+		searchBarInput.value?.focus();
+	});
+};
+
+const searchBarInputHasText = computed(() => {
+	return searchBarInputText.value !== "";
+});
+
+watch([screenWidth], () => {
 	searchBarOverlayIsActive.value =
-		screenWidth.value < 600 && searchBarIsFocused.value;
+		screenWidth.value < OVERLAY_THRESHOLD &&
+		(searchBarIsFocused.value || searchBarInputText.value !== "");
 });
 
 const updateScreenWidth = () => {
@@ -51,7 +75,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div id="top-panel" class="flex flex-1 justify-center gap-10">
+	<div
+		id="top-panel"
+		class="flex flex-1 justify-center"
+		:class="{
+			'gap-10': screenWidth > OVERLAY_THRESHOLD,
+			'gap-20': screenWidth > OVERLAY_THRESHOLD * 1.5,
+		}"
+	>
 		<div
 			id="top-panel-left-section"
 			class="flex-200px flex items-center justify-start gap-4"
@@ -74,24 +105,31 @@ onBeforeUnmount(() => {
 			<div
 				id="search-bar"
 				ref="lol"
-				class="flex h-8 w-8 flex-1 items-center justify-center rounded-3xl border border-neutral-light"
+				class="border-main-color flex h-8 w-8 flex-1 items-center justify-center rounded-3xl border"
 				v-if="
 					screenWidth > OVERLAY_THRESHOLD || searchBarOverlayIsActive
 				"
 			>
 				<input
 					id="search-bar-input"
-					class="ml-3 w-full flex-1 bg-neutral-dark text-lg outline-none"
-					ref="searchBar"
+					class="bg-main-bg-color placeholder-main-color ml-3 w-full flex-1 text-lg outline-none"
+					ref="searchBarInput"
+					v-model="searchBarInputText"
+					placeholder="search.."
 					@focus="handleSearchBarFocus"
 					@blur="handleSearchBarBlur"
 				/>
+				<CloseIcon
+					class="h-8 w-8 fill-current"
+					v-if="searchBarInputHasText"
+					@click="clearSearchBarInputAndFocus"
+				/>
 				<div
 					id="search-bar-icon-wrapper"
-					class="flex h-8 w-12 items-center justify-center rounded-r-3xl bg-neutral-light"
+					class="bg-main-color flex h-8 w-12 items-center justify-center rounded-r-3xl"
 				>
 					<SearchIcon
-						class="h-6 w-6 fill-current text-neutral-dark"
+						class="text-main-bg-color h-6 w-6 fill-current"
 					/>
 				</div>
 			</div>
@@ -103,18 +141,22 @@ onBeforeUnmount(() => {
 			v-if="!searchBarOverlayIsActive"
 		>
 			<div
-				id="search-icon-wrapper"
-				class="flex h-8 w-12 items-center justify-center rounded-3xl bg-neutral-light p-1"
+				id="search-button-wrapper"
+				class="flex h-8 w-12 items-center justify-center rounded-3xl p-1"
+				:class="{
+					'bg-main-color': !searchBarInputHasText,
+					'bg-primary': searchBarInputHasText,
+				}"
 				v-if="screenWidth <= OVERLAY_THRESHOLD"
 				@click="activateSearchBarOverlayAndFocus"
 			>
-				<SearchIcon class="h-6 w-6 fill-current text-neutral-dark" />
+				<SearchIcon class="text-main-bg-color h-6 w-6 fill-current" />
 			</div>
 			<div
-				id="settings-icon-wrapper"
-				class="flex h-8 w-8 items-center justify-center rounded-3xl bg-neutral-light p-1"
+				id="settings-button-wrapper"
+				class="bg-main-color flex h-8 w-8 items-center justify-center rounded-3xl p-1"
 			>
-				<SettingsIcon class="h-6 w-6 fill-current text-neutral-dark" />
+				<SettingsIcon class="text-main-bg-color h-6 w-6 fill-current" />
 			</div>
 		</div>
 	</div>

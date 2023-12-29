@@ -15,6 +15,8 @@ export default {
 				main: "1200px",
 			},
 			colors: {
+				"main-color": "var(--main-color)",
+				"main-bg-color": "var(--main-bg-color)",
 				primary: "#fff",
 				secondary: "#000",
 				"neutral-light": "#929292",

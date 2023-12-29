@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
+  --main-color: #bdbdbd;
+  --main-bg-color: #242424;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #bdbdbd;
-  background-color: #242424;
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
