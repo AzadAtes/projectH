@@ -3,48 +3,19 @@ import TopPanel from "./components/TopPanel.vue";
 </script>
 
 <template>
-  <div id="header-wrapper">
-    <div id="header">
-      <TopPanel />
-    </div>
-  </div>
-  <div id="content-wrapper">
-    <div id="content">
-      <RouterView />
-    </div>
-  </div>
+	<div
+		id="header-wrapper"
+		class="bg-dark h-header fixed left-0 top-0 flex w-full justify-center shadow-2xl"
+	>
+		<div id="header" class="flex flex-1 p-4">
+			<TopPanel />
+		</div>
+	</div>
+	<div id="main-wrapper" class="mt-header flex w-full justify-center">
+		<div id="main" class="min-w-main max-w-main w-full flex-1 p-4">
+			<RouterView />
+		</div>
+	</div>
 </template>
 
-<style scoped>
-#header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: var(--top-panel-height);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  background-color: #242424;
-  box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px;
-}
-#content-wrapper {
-  margin-top: var(--top-panel-height);
-  height: calc(100vh - var(--top-panel-height));
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-#header {
-  flex: 1;
-  display: flex;
-  padding: 1rem;
-}
-#content {
-  height: 100%;
-  max-width: var(--content-max-width);
-  min-width: var(--content-min-width);
-  padding: 1rem;
-  flex: 1;
-}
-</style>
+<style scoped></style>

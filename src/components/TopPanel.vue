@@ -3,186 +3,119 @@ import MenuIcon from "./icons/MenuIcon.vue";
 import SearchIcon from "./icons/SearchIcon.vue";
 import SettingsIcon from "./icons/SettingIcon.vue";
 import ArrowBackIcon from "./icons/ArrowBack.vue";
-import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { ref, onMounted, onBeforeUnmount, nextTick, watch } from "vue";
 
+const OVERLAY_THRESHOLD = 600;
 const screenWidth = ref(window.innerWidth);
-const input = ref<HTMLInputElement | null>(null);
-const showInput = ref(false);
-const inputIsFocused = ref(false);
+const searchBar = ref<HTMLInputElement | null>(null);
+const searchBarIsFocused = ref(false);
+const searchBarOverlayIsActive = ref(false);
 
-const toggleInput = () => {
-  showInput.value = !showInput.value;
+const handleSearchBarFocus = () => {
+	searchBarIsFocused.value = true;
 };
 
-const focusInput = () => {
-  showInput.value = true;
-  // Use nextTick to ensure the input is rendered before trying to focus
-  nextTick(() => {
-    input.value?.focus();
-  });
+const handleSearchBarBlur = () => {
+	searchBarIsFocused.value = false;
 };
 
-const handleInputFocus = () => {
-  inputIsFocused.value = true;
+const activateSearchBarOverlay = () => {
+	searchBarOverlayIsActive.value = true;
 };
 
-const handleInputBlur = () => {
-  showInput.value = false;
-  inputIsFocused.value = false;
+const deactivateSearchBarOverlay = () => {
+	searchBarOverlayIsActive.value = false;
 };
 
-const toggleInputAndFocus = () => {
-  toggleInput();
-  focusInput();
+const activateSearchBarOverlayAndFocus = () => {
+	activateSearchBarOverlay();
+	nextTick(() => {
+		searchBar.value?.focus();
+	});
 };
+
+watch([screenWidth, searchBarIsFocused], () => {
+	searchBarOverlayIsActive.value =
+		screenWidth.value < 600 && searchBarIsFocused.value;
+});
 
 const updateScreenWidth = () => {
-  screenWidth.value = window.innerWidth;
+	screenWidth.value = window.innerWidth;
 };
 onMounted(() => {
-  window.addEventListener("resize", updateScreenWidth);
+	window.addEventListener("resize", updateScreenWidth);
 });
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateScreenWidth);
+	window.removeEventListener("resize", updateScreenWidth);
 });
 </script>
 
 <template>
-  <div id="top-panel">
-    <div
-      id="top-panel-left-section"
-      v-if="screenWidth >= 600 || (!showInput && !inputIsFocused)"
-    >
-      <MenuIcon class="icon" />
-      <p>Today</p>
-    </div>
-    <div id="top-panel-middle-section">
-      <ArrowBackIcon
-        id="arrow-back-icon"
-        class="icon"
-        v-if="screenWidth < 600 && (showInput || inputIsFocused)"
-        @click="toggleInput"
-      />
-      <!-- search-bar only visible on larger screens -->
-      <div
-        id="search-bar"
-        v-if="screenWidth >= 600 || showInput || inputIsFocused"
-      >
-        <input
-          id="search-bar-input"
-          ref="input"
-          @focus="handleInputFocus"
-          v-on:blur="handleInputBlur"
-        />
-        <div id="search-bar-icon-wrapper" class="iconWrapper">
-          <SearchIcon class="icon" style="color: #242424" />
-        </div>
-      </div>
-    </div>
-    <div
-      id="top-panel-right-section"
-      v-if="screenWidth >= 600 || (!showInput && !inputIsFocused)"
-    >
-      <!-- search-icon only visible on smaller screens -->
-      <div
-        id="search-icon-wrapper"
-        class="iconWrapper"
-        v-if="screenWidth < 600"
-        @click="toggleInputAndFocus"
-      >
-        <SearchIcon class="icon" style="color: #242424" />
-      </div>
-      <div id="settings-icon-wrapper" class="iconWrapper">
-        <SettingsIcon class="icon" style="color: #242424" />
-      </div>
-    </div>
-  </div>
-</template>
+	<div id="top-panel" class="flex flex-1 justify-center gap-10">
+		<div
+			id="top-panel-left-section"
+			class="flex-200px flex items-center justify-start gap-4"
+			v-if="!searchBarOverlayIsActive"
+		>
+			<MenuIcon class="h-9 w-9" />
+			<p class="relative bottom-0.5 text-2xl">Important</p>
+		</div>
 
-<style scoped>
-* {
-  color: #bdbdbd;
-}
-p {
-  margin: 0;
-  position: relative;
-  bottom: 1px;
-  font-size: 22px;
-}
-input {
-  outline: none;
-  margin-left: 12px;
-  font-size: 18px;
-}
-.icon {
-  width: 2rem;
-  height: 2rem;
-}
-.iconWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#top-panel {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-}
-#top-panel-left-section {
-  flex: 1 1 200px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-}
-#top-panel-middle-section {
-  max-width: 900px;
-  flex: 1 1 900px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#top-panel-right-section {
-  flex: 1 1 200px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1rem;
-}
-#search-bar {
-  height: 2rem;
-  width: 2rem;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: #929292 solid 2px;
-  border-radius: 25px;
-}
-#search-bar-input {
-  flex: 1;
-  border: none;
-  border-radius: 25px 0 0 25px;
-  background-color: #242424;
-}
-#search-bar-icon-wrapper {
-  width: 3rem;
-  background-color: #929292;
-  border-radius: 0 25px 25px 0;
-}
-#search-icon-wrapper {
-  height: 2rem;
-  width: 3rem;
-  padding: 3px;
-  border-radius: 25px;
-  background-color: #929292;
-}
-#settings-icon-wrapper {
-  height: 2rem;
-  width: 2rem;
-  padding: 3px;
-  border-radius: 25px;
-  background-color: #929292;
-}
-</style>
+		<div
+			id="top-panel-middle-section"
+			class="max-w-900px flex-900px flex items-center justify-center"
+		>
+			<ArrowBackIcon
+				id="arrow-back-icon"
+				class="h-8 w-8"
+				v-if="searchBarOverlayIsActive"
+				@click="deactivateSearchBarOverlay"
+			/>
+			<div
+				id="search-bar"
+				ref="lol"
+				class="flex h-8 w-8 flex-1 items-center justify-center rounded-3xl border border-neutral-light"
+				v-if="
+					screenWidth > OVERLAY_THRESHOLD || searchBarOverlayIsActive
+				"
+			>
+				<input
+					id="search-bar-input"
+					class="ml-3 w-full flex-1 bg-neutral-dark text-lg outline-none"
+					ref="searchBar"
+					@focus="handleSearchBarFocus"
+					@blur="handleSearchBarBlur"
+				/>
+				<div
+					id="search-bar-icon-wrapper"
+					class="flex h-8 w-12 items-center justify-center rounded-r-3xl bg-neutral-light"
+				>
+					<SearchIcon
+						class="h-6 w-6 fill-current text-neutral-dark"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<div
+			id="top-panel-right-section"
+			class="flex-200px flex items-center justify-end gap-4"
+			v-if="!searchBarOverlayIsActive"
+		>
+			<div
+				id="search-icon-wrapper"
+				class="flex h-8 w-12 items-center justify-center rounded-3xl bg-neutral-light p-1"
+				v-if="screenWidth <= OVERLAY_THRESHOLD"
+				@click="activateSearchBarOverlayAndFocus"
+			>
+				<SearchIcon class="h-6 w-6 fill-current text-neutral-dark" />
+			</div>
+			<div
+				id="settings-icon-wrapper"
+				class="flex h-8 w-8 items-center justify-center rounded-3xl bg-neutral-light p-1"
+			>
+				<SettingsIcon class="h-6 w-6 fill-current text-neutral-dark" />
+			</div>
+		</div>
+	</div>
+</template>
