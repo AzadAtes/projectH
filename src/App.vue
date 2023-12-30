@@ -5,7 +5,7 @@ import TopPanel from "./components/TopPanel.vue";
 <template>
 	<div
 		id="header-wrapper"
-		class="bg-dark h-header fixed left-0 top-0 flex w-full justify-center shadow-2xl"
+		class="bg-main-bg-color h-header fixed left-0 top-0 flex w-full justify-center shadow-2xl"
 	>
 		<div id="header" class="flex flex-1 p-4">
 			<TopPanel />

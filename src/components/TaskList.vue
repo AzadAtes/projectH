@@ -1,21 +1,12 @@
 <script setup lang="ts">
 import TaskItem from "./TaskItem.vue";
+import { useTaskStore } from "../stores/taskStore.ts";
+const taskStore = useTaskStore();
 </script>
 
 <template>
 	<ul class="flex list-none flex-col gap-4">
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
-		<TaskItem />
+		<TaskItem v-for="task in taskStore.tasks" :task="task" :key="task.id" />
 	</ul>
 </template>
 

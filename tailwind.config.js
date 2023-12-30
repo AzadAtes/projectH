@@ -4,7 +4,14 @@ export default {
 	theme: {
 		extend: {
 			flex: {
+				"100px": "1 1 100px",
 				"200px": "1 1 200px",
+				"300px": "1 1 300px",
+				"400px": "1 1 400px",
+				"500px": "1 1 500px",
+				"600px": "1 1 600px",
+				"700px": "1 1 700px",
+				"800px": "1 1 800px",
 				"900px": "1 1 900px",
 			},
 			minWidth: {
