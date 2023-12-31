@@ -35,9 +35,12 @@ const subTasksAreShown = ref(false);
 					<p>{{ props.task.name }}</p>
 				</div>
 			</div>
-			<div class="rounded-b-xl bg-neutral-dark" v-show="subTasksAreShown">
+			<div
+				class="flex flex-col gap-4 rounded-b-xl bg-neutral-dark p-4"
+				v-show="subTasksAreShown"
+			>
 				<p>{{ props.task.description }}</p>
-				<div v-for="subTask in props.task.subTasks">
+				<div class="ml-2" v-for="subTask in props.task.subTasks">
 					<SubTask :sub-task="subTask" />
 				</div>
 			</div>

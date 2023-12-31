@@ -10,7 +10,8 @@ const props = defineProps({
 </script>
 
 <template>
-	<div class="w-fit bg-main-bg-color">
+	<div class="bg-red flex w-fit gap-2 rounded-xl p-2">
+		<input type="checkbox" @click.stop />
 		<p>{{ props.subTask.name }}</p>
 	</div>
 </template>
