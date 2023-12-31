@@ -22,12 +22,13 @@ export default {
 				main: "1200px",
 			},
 			colors: {
+				red: "rgba(179, 61, 61, 0.75)",
 				"main-color": "var(--main-color)",
 				"main-bg-color": "var(--main-bg-color)",
 				primary: "#fff",
 				secondary: "#000",
 				"neutral-light": "#929292",
-				"neutral-dark": "#242424",
+				"neutral-dark": "#333333",
 			},
 			height: {
 				header: "60px",
