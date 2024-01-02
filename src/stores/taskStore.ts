@@ -7,12 +7,22 @@ export const useTaskStore = defineStore("tasks", () => {
 			id: "1",
 			name: "This is my very first Task. Its kinda long..",
 			description:
-				"The push-up (press-up in British English) is a common calisthenics exercise beginning from the prone position. By raising and lowering the body using the arms, push-ups exercise the pectoral muscles, triceps, and anterior deltoids, with ancillary benefits to the rest of the deltoids, serratus anterior, coracobrachialis and the midsection as a whole.[1] Push-ups are a basic exercise used in civilian athletic training or physical education and commonly in military physical training.",
+				"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
 			dueDateAndTime: "Today 15:45",
 			subTasks: [
 				{
 					id: "s111",
 					name: "SubTask 1. This is my very first SubTask.",
+					subSubTasks: [
+						{
+							id: "s111",
+							name: "SubSubTask 1. This is my very first SubSubTask.",
+						},
+						{
+							id: "s112",
+							name: "SubSubTask 2. This is my second SubSubTask.",
+						},
+					],
 				},
 				{
 					id: "s112",

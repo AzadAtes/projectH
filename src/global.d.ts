@@ -19,6 +19,21 @@ declare type SubTask = {
 	name: string;
 	dueDateAndTime?: String;
 
+	subSubTasks?: SubSubTask[];
+
+	complete?: boolean;
+	date?: null;
+	fullDate?: Date;
+	important?: Boolean;
+	myDay?: Boolean;
+	planned?: Boolean;
+};
+
+declare type SubSubTask = {
+	id: string;
+	name: string;
+	dueDateAndTime?: String;
+
 	complete?: boolean;
 	date?: null;
 	fullDate?: Date;
