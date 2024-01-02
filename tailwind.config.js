@@ -30,7 +30,7 @@ export default {
 				"neutral-light": "rgba(143, 143, 157, 0.025)",
 				"neutral-dark": "rgba(143, 143, 157, 0.025)",
 				blueish: "#292831",
-				"top-bar": "#151518",
+				"top-bar": "#121215",
 			},
 			height: {
 				header: "60px",
