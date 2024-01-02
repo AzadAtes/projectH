@@ -5,14 +5,14 @@ import TopPanel from "./components/TopPanel.vue";
 <template>
 	<div
 		id="header-wrapper"
-		class="bg-main-bg-color h-header fixed left-0 top-0 flex w-full justify-center shadow-2xl"
+		class="bg-top-bar fixed left-0 top-0 flex h-header w-full justify-center shadow"
 	>
 		<div id="header" class="flex flex-1 p-4">
 			<TopPanel />
 		</div>
 	</div>
 	<div id="main-wrapper" class="mt-header flex w-full justify-center">
-		<div id="main" class="min-w-main max-w-main w-full flex-1 p-4">
+		<div id="main" class="w-full min-w-main max-w-main flex-1 p-4">
 			<RouterView />
 		</div>
 	</div>

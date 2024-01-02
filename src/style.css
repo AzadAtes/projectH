@@ -4,7 +4,7 @@
 
 :root {
   --main-color: #bdbdbd;
-  --main-bg-color: #242424;
+  --main-bg-color: rgba(15, 15, 17, 1);
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

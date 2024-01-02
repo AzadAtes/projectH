@@ -5,28 +5,33 @@ export const useTaskStore = defineStore("tasks", () => {
 	const tasks = ref<Task[]>([
 		{
 			id: "1",
-			name: "This is my very first Task. Its kinda long..",
-			description:
-				"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+			name: "Push-Workout",
+			description: "",
 			dueDateAndTime: "Today 15:45",
 			subTasks: [
 				{
-					id: "s111",
-					name: "SubTask 1. This is my very first SubTask.",
+					id: "110",
+					name: "Pushups",
 					subSubTasks: [
 						{
-							id: "s111",
-							name: "SubSubTask 1. This is my very first SubSubTask.",
+							id: "111",
+							name: "Set 1. 10x",
 						},
 						{
-							id: "s112",
-							name: "SubSubTask 2. This is my second SubSubTask.",
+							id: "112",
+							name: "Set 1. 10x",
 						},
 					],
 				},
 				{
-					id: "s112",
-					name: "SubTask 2. This is my very second SubTask.",
+					id: "120",
+					name: "Dips",
+					subSubTasks: [
+						{
+							id: "121",
+							name: "Set 1. 12x",
+						},
+					],
 				},
 			],
 		},
@@ -38,7 +43,7 @@ export const useTaskStore = defineStore("tasks", () => {
 			dueDateAndTime: "Tomorrow 15:45",
 			subTasks: [
 				{
-					id: "s121",
+					id: "210",
 					name: "SubTask 1",
 				},
 			],

@@ -5,7 +5,7 @@ const taskStore = useTaskStore();
 </script>
 
 <template>
-	<ul id="task-list" class="flex list-none flex-col gap-4">
+	<ul id="task-list" class="flex list-none flex-col gap-5">
 		<TaskItem v-for="task in taskStore.tasks" :task="task" :key="task.id" />
 	</ul>
 </template>

@@ -10,9 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-	<li
-		class="flex cursor-pointer gap-2 rounded bg-neutral-dark p-1 pl-2 shadow"
-	>
+	<li class="bg-blueish flex cursor-pointer gap-2 rounded p-1 pl-2 shadow-lg">
 		<input type="checkbox" @click.stop />
 		<p>{{ props.subSubTask.name }}</p>
 	</li>

@@ -27,8 +27,10 @@ export default {
 				"main-bg-color": "var(--main-bg-color)",
 				primary: "#fff",
 				secondary: "#000",
-				"neutral-light": "#929292",
-				"neutral-dark": "#333333",
+				"neutral-light": "rgba(143, 143, 157, 0.025)",
+				"neutral-dark": "rgba(143, 143, 157, 0.025)",
+				blueish: "#292831",
+				"top-bar": "#151518",
 			},
 			height: {
 				header: "60px",

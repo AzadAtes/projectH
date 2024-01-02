@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
 		>
 			<ArrowBackIcon
 				id="arrow-back-icon"
-				class="h-8 w-8"
+				class="h-8 w-8 text-main-color"
 				v-if="searchBarOverlayIsActive"
 				@click="deactivateSearchBarOverlay"
 			/>
@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
 			>
 				<input
 					id="search-bar-input"
-					class="ml-3 w-full flex-1 bg-main-bg-color text-lg placeholder-main-color outline-none"
+					class="bg-top-bar ml-3 w-full flex-1 text-lg placeholder-main-color outline-none"
 					ref="searchBarInput"
 					v-model="searchBarInputText"
 					placeholder="search.."

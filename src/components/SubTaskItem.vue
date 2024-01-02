@@ -20,11 +20,11 @@ const toggleShowSubSubTasks = () => {
 	<li id="sub-task-item" class="rounded-xl shadow-lg">
 		<div
 			id="sub-task-item-header"
-			class="flex cursor-pointer items-center bg-red p-0 shadow"
+			class="flex cursor-pointer items-center p-0"
 			:class="
 				subSubTasksAreShown && props.subTask.subSubTasks !== undefined
-					? 'rounded-t-xl'
-					: 'rounded-xl'
+					? 'rounded-t-xl bg-neutral-dark'
+					: 'bg-blueish rounded-xl shadow'
 			"
 			@click="toggleShowSubSubTasks"
 		>
@@ -36,12 +36,12 @@ const toggleShowSubSubTasks = () => {
 
 		<div
 			id="sub-task-item-content"
-			class="flex flex-col gap-4 rounded-b-xl bg-main-bg-color"
+			class="flex flex-col gap-4 rounded-b-xl bg-neutral-light"
 			v-show="subSubTasksAreShown"
 		>
 			<ul
 				id="sub-sub-task-list"
-				class="flex list-none flex-col gap-3 p-3"
+				class="ml-6 flex list-none flex-col gap-3 p-3"
 			>
 				<SubSubTaskItem
 					v-show="subSubTasksAreShown"
