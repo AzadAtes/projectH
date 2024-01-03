@@ -17,18 +17,18 @@ const toggleShowSubSubTasks = () => {
 </script>
 
 <template>
-	<li id="sub-task-item" class="rounded-xl shadow-lg">
+	<li id="sub-task-item" class="rounded shadow-lg">
 		<div
 			id="sub-task-item-header"
-			class="flex cursor-pointer items-center p-0"
+			class="flex cursor-pointer items-center p-1"
 			:class="
 				subSubTasksAreShown && props.subTask.subSubTasks !== undefined
 					? 'rounded-t-xl bg-neutral-dark'
-					: 'bg-blueish rounded-xl shadow'
+					: 'bg-blueish rounded shadow'
 			"
 			@click="toggleShowSubSubTasks"
 		>
-			<input type="checkbox" class="m-2 h-6 w-6" @click.stop />
+			<input type="checkbox" class="m-2 h-4 w-4" @click.stop />
 			<div id="sub-task-item-headline" class="flex gap-1 text-2xl">
 				<p>{{ props.subTask.name }}</p>
 			</div>

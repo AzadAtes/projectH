@@ -20,7 +20,7 @@ const toggleShowSubTasks = () => {
 </script>
 
 <template>
-	<li id="task-item" class="rounded-xl shadow-lg">
+	<li id="task-item" class="rounded shadow-lg">
 		<div
 			id="task-item-header"
 			class="bg-blueish flex w-full cursor-pointer items-center gap-4 p-2"
@@ -29,14 +29,14 @@ const toggleShowSubTasks = () => {
 				(props.task.subTasks !== undefined ||
 					props.task.description !== undefined)
 					? 'rounded-t-xl bg-neutral-dark'
-					: 'bg-blueish rounded-xl shadow'
+					: 'bg-blueish rounded shadow'
 			"
 			@click="toggleShowSubTasks"
 		>
 			<input
 				type="checkbox"
 				id="task-item-checkbox"
-				class="m-0 h-6 w-6 p-0 accent-green-400"
+				class="m-0 h-5 w-5 p-0 accent-green-400"
 				@click.stop
 			/>
 
