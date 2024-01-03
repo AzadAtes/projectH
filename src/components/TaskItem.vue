@@ -20,16 +20,16 @@ const toggleShowSubTasks = () => {
 </script>
 
 <template>
-	<li id="task-item" class="rounded shadow-lg">
+	<li id="task-item" class="rounded shadow">
 		<div
 			id="task-item-header"
-			class="bg-blueish flex w-full cursor-pointer items-center gap-4 p-2"
+			class="flex w-full cursor-pointer items-center gap-4 bg-blueish p-2 pl-4"
 			:class="
 				subTasksAreShown &&
 				(props.task.subTasks !== undefined ||
 					props.task.description !== undefined)
 					? 'rounded-t-xl bg-neutral-dark'
-					: 'bg-blueish rounded shadow'
+					: 'rounded bg-blueish shadow'
 			"
 			@click="toggleShowSubTasks"
 		>

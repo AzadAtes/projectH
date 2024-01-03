@@ -5,6 +5,7 @@ export default {
 		extend: {
 			flex: {
 				"100px": "1 1 100px",
+				"150px": "1 1 150px",
 				"200px": "1 1 200px",
 				"300px": "1 1 300px",
 				"400px": "1 1 400px",
@@ -25,12 +26,13 @@ export default {
 				red: "rgba(179, 61, 61, 0.75)",
 				"main-color": "var(--main-color)",
 				"main-bg-color": "var(--main-bg-color)",
+				"main-icon-color": "var(--main-icon-color)",
 				primary: "#fff",
 				secondary: "#000",
-				"neutral-light": "rgba(143, 143, 157, 0.025)",
-				"neutral-dark": "rgba(143, 143, 157, 0.025)",
+				"neutral-light": "rgba(143, 143, 157, 0.05)",
+				"neutral-dark": "rgba(143, 143, 157, 0.05)",
 				blueish: "#292831",
-				"top-bar": "#121215",
+				"top-bar": "#161619",
 			},
 			height: {
 				header: "60px",

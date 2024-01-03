@@ -75,28 +75,19 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div
-		id="top-panel"
-		class="flex flex-1 justify-center"
-		:class="{
-			'gap-10': screenWidth > OVERLAY_THRESHOLD,
-			'gap-20': screenWidth > OVERLAY_THRESHOLD * 1.5,
-		}"
-	>
+	<div id="top-panel" class="flex flex-1 justify-center gap-20">
 		<div
 			id="top-panel-left-section"
-			class="flex flex-200px items-center justify-start gap-4"
+			class="flex flex-initial items-center justify-start gap-4"
 			v-if="!searchBarOverlayIsActive"
 		>
 			<MenuIcon class="h-9 w-9 text-main-color" />
-			<p class="relative bottom-0.5 text-2xl text-main-color">
-				Important
-			</p>
+			<p class="relative bottom-0.5 text-2xl text-main-color">Tasks</p>
 		</div>
 
 		<div
 			id="top-panel-middle-section"
-			class="flex max-w-900px flex-900px items-center justify-center"
+			class="flex flex-1 items-center justify-center"
 		>
 			<ArrowBackIcon
 				id="arrow-back-icon"
@@ -106,14 +97,14 @@ onBeforeUnmount(() => {
 			/>
 			<div
 				id="search-bar"
-				class="flex h-8 w-8 flex-1 items-center justify-center rounded-3xl border border-main-color"
+				class="flex h-8 w-8 max-w-900px flex-1 items-center justify-center rounded-3xl border border-main-color"
 				v-if="
 					screenWidth > OVERLAY_THRESHOLD || searchBarOverlayIsActive
 				"
 			>
 				<input
 					id="search-bar-input"
-					class="bg-top-bar ml-3 w-full flex-1 text-lg placeholder-main-color outline-none"
+					class="ml-3 w-full flex-1 bg-top-bar text-lg placeholder-main-color outline-none"
 					ref="searchBarInput"
 					v-model="searchBarInputText"
 					placeholder="search.."
@@ -127,7 +118,7 @@ onBeforeUnmount(() => {
 				/>
 				<div
 					id="search-bar-icon-wrapper"
-					class="flex h-8 w-12 items-center justify-center rounded-r-3xl bg-main-color"
+					class="bg-main-icon-color flex h-8 w-10 items-center justify-center rounded-r-3xl"
 				>
 					<SearchIcon
 						class="h-6 w-6 fill-current text-main-bg-color"
@@ -138,12 +129,12 @@ onBeforeUnmount(() => {
 
 		<div
 			id="top-panel-right-section"
-			class="flex flex-200px items-center justify-end gap-4"
+			class="flex flex-initial items-center justify-end gap-4"
 			v-if="!searchBarOverlayIsActive"
 		>
 			<div
 				id="search-button-wrapper"
-				class="flex h-8 w-12 items-center justify-center rounded-3xl p-1"
+				class="bg-main-icon-color flex h-8 w-8 items-center justify-center rounded-3xl p-1"
 				:class="{
 					'bg-main-color': !searchBarInputHasText,
 					'bg-primary': searchBarInputHasText,
@@ -155,7 +146,7 @@ onBeforeUnmount(() => {
 			</div>
 			<div
 				id="settings-button-wrapper"
-				class="flex h-8 w-8 items-center justify-center rounded-3xl bg-main-color p-1"
+				class="bg-main-icon-color flex h-8 w-8 items-center justify-center rounded-3xl p-1"
 			>
 				<SettingsIcon class="h-6 w-6 fill-current text-main-bg-color" />
 			</div>

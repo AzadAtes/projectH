@@ -24,11 +24,15 @@ const toggleShowSubSubTasks = () => {
 			:class="
 				subSubTasksAreShown && props.subTask.subSubTasks !== undefined
 					? 'rounded-t-xl bg-neutral-dark'
-					: 'bg-blueish rounded shadow'
+					: 'rounded bg-blueish shadow'
 			"
 			@click="toggleShowSubSubTasks"
 		>
-			<input type="checkbox" class="m-2 h-4 w-4" @click.stop />
+			<input
+				type="checkbox"
+				class="m-2 h-4 w-4 accent-green-400"
+				@click.stop
+			/>
 			<div id="sub-task-item-headline" class="flex gap-1 text-2xl">
 				<p>{{ props.subTask.name }}</p>
 			</div>
